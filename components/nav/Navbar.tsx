@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import { Button } from '../ui/button'
 import { SiGithub } from "react-icons/si";
+import LoginForm from './LoginForm';
 
 const Navbar = () => {
     return (
@@ -14,10 +15,7 @@ const Navbar = () => {
 
                 </div>
             </div>
-            <Button variant="outline" className='flex items-center gap-2'>
-                <SiGithub />
-                Login
-            </Button>
+            <LoginForm />
         </nav>
     )
 }
