@@ -24,7 +24,7 @@ const SessionProvider = () => {
     }, []);
 
     return (
-        <div>SessionProvider</div>
+        <div></div>
     )
 }
 
