@@ -4,11 +4,11 @@ import Link from 'next/link'
 import React from 'react'
 import LoginForm from './LoginForm';
 import { useUser } from '@/lib/store/user';
+import Profile from './Profile';
 
 const Navbar = () => {
 
     const user = useUser((state) => state.user);
-    console.log(user);
 
     return (
         <nav className='flex items-center justify-between'>
@@ -21,7 +21,7 @@ const Navbar = () => {
                 </div>
             </div>
             {user?.id ? (
-                <h1>Profile</h1>
+                <Profile />
             ) : (
                 <LoginForm />
             )}
