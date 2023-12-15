@@ -1,10 +1,15 @@
+"use client"
+
 import Link from 'next/link'
 import React from 'react'
-import { Button } from '../ui/button'
-import { SiGithub } from "react-icons/si";
 import LoginForm from './LoginForm';
+import { useUser } from '@/lib/store/user';
 
 const Navbar = () => {
+
+    const user = useUser((state) => state.user);
+    console.log(user);
+
     return (
         <nav className='flex items-center justify-between'>
             <div className='group'>
@@ -15,7 +20,11 @@ const Navbar = () => {
 
                 </div>
             </div>
-            <LoginForm />
+            {user?.id ? (
+                <h1>Profile</h1>
+            ) : (
+                <LoginForm />
+            )}
         </nav>
     )
 }
