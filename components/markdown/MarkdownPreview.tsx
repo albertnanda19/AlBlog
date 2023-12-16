@@ -7,6 +7,7 @@ import { PiTerminalThin } from 'react-icons/pi'
 
 import "highlight.js/styles/atom-one-dark.min.css";
 import CopyButton from './CopyButton'
+import { icons } from '@/lib/icons'
 
 const MarkdownPreview = ({ content, className }: { content: string, className?: string }) => {
     return (
@@ -29,6 +30,12 @@ const MarkdownPreview = ({ content, className }: { content: string, className?: 
 
                     if (match?.length) {
                         let Icon = PiTerminalThin;
+                        const isMatch = icons.hasOwnProperty(match[1]);
+
+                        if (isMatch) {
+                            Icon = icons[match[1] as keyof typeof icons];
+                        }
+
                         const id = (Math.floor(Math.random() * 100) + 1).toString();
                         return (
                             <div className='bg-graident-dark text-gray-300 border rounded-md font-poppins'>

@@ -35,6 +35,19 @@ const FormSchema = z.object({
     }),
     is_published: z.boolean(),
     is_premium: z.boolean(),
+}).refine((data) => {
+    const image_url = data.image_url;
+
+    try {
+        const url = new URL(image_url);
+
+        return url.hostname === 'images.unsplash.com';
+    } catch (error) {
+        return false;
+    }
+}, {
+    message: "Currently we are support only the image from unsplash",
+    path: ["image_url"],
 })
 
 export default function BlogForm() {
@@ -69,7 +82,7 @@ export default function BlogForm() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="w-full border rounded-md space-y-6 pb-10">
                 <div className="p-5 flex gap-5 items-center flex-wrap justify-between border-b">
                     <div className="flex gap-5 items-center flex-wrap">
-                        <span role="button" tabIndex={0} className="flex items-center gap-1 border bg-zinc-700 p-2 rounded-md hover:ring-2 hover:ring-zinc-400 transition-all" onClick={() => setPreview(!isPreview)}>
+                        <span role="button" tabIndex={0} className="flex items-center gap-1 border bg-zinc-700 p-2 rounded-md hover:ring-2 hover:ring-zinc-400 transition-all" onClick={() => setPreview(!isPreview && !form.getFieldState("image_url").invalid)}>
 
                             {isPreview ? (
                                 <>
