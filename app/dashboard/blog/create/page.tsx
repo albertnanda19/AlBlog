@@ -66,7 +66,7 @@ export default function BlogForm() {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full border rounded-md space-y-6">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full border rounded-md space-y-6 pb-10">
                 <div className="p-5 flex gap-5 items-center flex-wrap justify-between border-b">
                     <div className="flex gap-5 items-center flex-wrap">
                         <span role="button" tabIndex={0} className="flex items-center gap-1 border bg-zinc-700 p-2 rounded-md hover:ring-2 hover:ring-zinc-400 transition-all" onClick={() => setPreview(!isPreview)}>
@@ -175,7 +175,7 @@ export default function BlogForm() {
                             <FormControl>
                                 <div className={cn("p-2 w-full flex break-words gap-2", isPreview ? "divide-x-0" : "divide-x h-70vh")}>
                                     <Textarea placeholder="title" {...field} className={cn("border-none text-lg font-medium leading-relaxed resize-none h-full", isPreview ? "w-0 p-0" : "w-full lg:w-1/2")} />
-                                    <div className={cn("lg:px-10", isPreview ? "mx-auto w-full lg:w-4/5" : "w-1/2 md:block hidden")}>
+                                    <div className={cn("overflow-y-auto", isPreview ? "mx-auto w-full lg:w-4/5" : "w-1/2 md:block hidden")}>
                                         <MarkdownPreview content={form.getValues().content} />
                                     </div>
                                 </div>

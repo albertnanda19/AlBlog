@@ -6,6 +6,7 @@ import rehypeHighlight from "rehype-highlight"
 import { PiTerminalThin } from 'react-icons/pi'
 
 import "highlight.js/styles/atom-one-dark.min.css";
+import CopyButton from './CopyButton'
 
 const MarkdownPreview = ({ content, className }: { content: string, className?: string }) => {
     return (
@@ -28,9 +29,10 @@ const MarkdownPreview = ({ content, className }: { content: string, className?: 
 
                     if (match?.length) {
                         let Icon = PiTerminalThin;
+                        const id = (Math.floor(Math.random() * 100) + 1).toString();
                         return (
-                            <div className='bg-graident-dark text-gray-300 border rounded-md'>
-                                <div className='px-5 py-2 border-b'>
+                            <div className='bg-graident-dark text-gray-300 border rounded-md font-poppins'>
+                                <div className='px-5 py-2 border-b flex justify-between items-center'>
                                     <div className='flex items-center gap-2'>
                                         <Icon />
                                         <span>
@@ -40,9 +42,10 @@ const MarkdownPreview = ({ content, className }: { content: string, className?: 
                                             }
                                         </span>
                                     </div>
+                                    <CopyButton id={id} />
                                 </div>
                                 <div className='overflow-x-auto w-full'>
-                                    <div className='p-5'>
+                                    <div className='p-5' id={id}>
                                         {children}
                                     </div>
                                 </div>
