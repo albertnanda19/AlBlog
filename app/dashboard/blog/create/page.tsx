@@ -28,7 +28,7 @@ const Page = () => {
             })
         } else {
             toast({
-                title: "Successfully created" + data.title,
+                title: "Successfully created " + data.title,
 
             })
             router.push("/dashboard")
