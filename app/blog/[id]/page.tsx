@@ -1,6 +1,7 @@
 import { IBlog } from '@/lib/types';
 import Image from 'next/image';
 import React from 'react'
+import BlogContent from './components/BlogContent';
 
 const page = async ({
     params
@@ -30,6 +31,7 @@ const page = async ({
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
             </div>
+            <BlogContent blogId={blog.id} />
         </div>
     )
 }
