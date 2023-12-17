@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 import { EyeOpenIcon, Pencil1Icon, TrashIcon } from '@radix-ui/react-icons'
 import React from 'react'
 import { Switch } from "@/components/ui/switch"
-import { readBlog, updateBlogById } from '@/lib/actions/blog'
+import { readBlogAdmin, updateBlogById } from '@/lib/actions/blog'
 import DeleteAlert from './DeleteAlert'
 import SwitchForm from './SwitchForm'
 import { BlogFormSchemaType } from '../schema'
@@ -10,7 +10,7 @@ import Link from 'next/link'
 
 const BlogTable = async () => {
 
-    const { data: blogs } = await readBlog();
+    const { data: blogs } = await readBlogAdmin();
 
     return (
         <div className='overflow-x-auto'>
