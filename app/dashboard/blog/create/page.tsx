@@ -5,8 +5,11 @@ import BlogForm from '../../components/BlogForm'
 import { BlogFormSchemaType } from '../../schema'
 import { toast } from '@/components/ui/use-toast'
 import { createBlog } from '@/lib/actions/blog'
+import { useRouter } from 'next/navigation'
 
-const page = () => {
+const Page = () => {
+
+    const router = useRouter();
 
     const handleCreate = async (data: BlogFormSchemaType) => {
         const result = await createBlog(data)
@@ -28,6 +31,7 @@ const page = () => {
                 title: "Successfully created" + data.title,
 
             })
+            router.push("/dashboard")
         }
 
     }
@@ -37,4 +41,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

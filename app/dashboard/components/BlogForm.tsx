@@ -19,7 +19,7 @@ import { toast } from "@/components/ui/use-toast"
 import { EyeOpenIcon, Pencil1Icon, RocketIcon, StarIcon } from "@radix-ui/react-icons"
 import { Switch } from "@/components/ui/switch"
 import { BsSave } from "react-icons/bs"
-import { useState } from "react"
+import { useState, useTransition } from "react"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { Textarea } from "@/components/ui/textarea"
@@ -32,6 +32,8 @@ export default function BlogForm({
 }: {
     onHandleSubmit: (data: BlogFormSchemaType) => void;
 }) {
+
+    const [isPending, startTransition] = useTransition();
 
     const [isPreview, setPreview] = useState(false);
 
@@ -48,7 +50,9 @@ export default function BlogForm({
     })
 
     function onSubmit(data: z.infer<typeof BlogFormSchema>) {
-        onHandleSubmit(data);
+        startTransition(() => {
+            onHandleSubmit(data);
+        })
     }
 
     return (
@@ -101,7 +105,7 @@ export default function BlogForm({
                             )}
                         />
                     </div>
-                    <Button className="flex items-center gap-1" disabled={!form.formState.isValid}>
+                    <Button className={cn("flex items-center gap-1", { "animate-spin": isPending })} disabled={!form.formState.isValid}>
                         <BsSave />
                         Save
                     </Button>
