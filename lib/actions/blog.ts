@@ -68,7 +68,8 @@ export async function updateBlogDetailById(blogId: string, data: BlogFormSchemaT
     } else {
         const result = await supabase.from("blog_content").update({ content: data.content }).eq("blog_id", blogId);
 
-        revalidatePath(DASHBOARD)
+        revalidatePath(DASHBOARD);
+        revalidatePath("/blog/" + blogId);
         return JSON.stringify(result);
     }
 }
