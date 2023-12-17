@@ -48,7 +48,8 @@ export async function deleteBlogById(blogId: string) {
 export async function updateBlogById(blogId: string, data: BlogFormSchemaType) {
     const supabase = await createSupabaseServerClient();
     const result = await supabase.from("blog").update(data).eq("id", blogId);
-    revalidatePath(DASHBOARD)
+    revalidatePath(DASHBOARD);
+    revalidatePath("/blog/" + blogId);
     return JSON.stringify(result);
 }
 

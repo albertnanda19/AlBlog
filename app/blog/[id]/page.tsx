@@ -8,6 +8,12 @@ const page = async ({
 
     const { data: blog } = await fetch(process.env.SITE_URL + "/api/blog/?id=" + params.id).then((res) => res.json()) as { data: IBlog };
 
+    if (!blog?.id) {
+        return (
+            <h1>Not Found</h1>
+        )
+    }
+
     return (
         <div className='max-w-5xl mx-auto min-h-screen pt-10 space-y-10'>
             <div className='sm:px-10 space-y-5'>
