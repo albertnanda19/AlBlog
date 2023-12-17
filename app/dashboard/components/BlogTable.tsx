@@ -6,6 +6,7 @@ import { readBlog, updateBlogById } from '@/lib/actions/blog'
 import DeleteAlert from './DeleteAlert'
 import SwitchForm from './SwitchForm'
 import { BlogFormSchemaType } from '../schema'
+import Link from 'next/link'
 
 const BlogTable = async () => {
 
@@ -46,10 +47,12 @@ const Actions = ({ id }: { id: string }) => {
                 View
             </Button>
             <DeleteAlert blogId={id} />
-            <Button variant="outline" className='flex items-center gap-2'>
-                <Pencil1Icon />
-                Edit
-            </Button>
+            <Link href={"/dashboard/blog/edit/" + id}>
+                <Button variant="outline" className='flex items-center gap-2'>
+                    <Pencil1Icon />
+                    Edit
+                </Button>
+            </Link>
         </div>
     )
 }
