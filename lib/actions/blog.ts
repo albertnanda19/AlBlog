@@ -32,3 +32,7 @@ export async function createBlog(data: BlogFormSchemaType) {
     }
 
 }
+
+export async function readBlog() {
+    return supabase.from("blog").select("*").order("created_at", { ascending: true });
+}
