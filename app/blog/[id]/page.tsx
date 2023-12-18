@@ -3,6 +3,31 @@ import Image from 'next/image';
 import React from 'react'
 import BlogContent from './components/BlogContent';
 
+// export async function generateStaticParams() {
+//     const { data: blog } = (await fetch(process.env.SITE_URL + "/api/blog/?id=" + "*").then((res) => res.json()));
+
+//     return blog;
+// }
+
+// export async function generateMetadata({ params }: { params: { id: string } }) {
+//     const { data: blog } = await fetch(process.env.SITE_URL + "/api/blog/?id=" + params.id).then((res) => res.json()) as { data: IBlog };
+
+//     return {
+//         title: blog?.title,
+//         authors: {
+//             name: "Albert Mangiri"
+//         },
+//         openGraph: {
+//             title: blog?.title,
+//             url: process.env.SITE_URL + "/blog/" + params.id,
+//             sitename: "AlBlog",
+//             image: blog?.image_url,
+//             type: "website",
+//         },
+//         keywords: ["Albert Blog", "AlBlog", "Albert tech blog"]
+//     }
+// }
+
 const page = async ({
     params
 }: { params: { id: string } }) => {
