@@ -5,6 +5,7 @@ import { Database } from '@/lib/types/supabase';
 import { createBrowserClient } from '@supabase/ssr';
 import React, { useEffect, useState } from 'react'
 import BlogLoading from './BlogLoading';
+import Checkout from '@/components/stripe/Checkout';
 
 const BlogContent = ({
     blogId
@@ -35,6 +36,10 @@ const BlogContent = ({
 
     if (isLoading) {
         return <BlogLoading />
+    }
+
+    if (!blog?.content) {
+        return <Checkout />
     }
 
     return (
